@@ -1,0 +1,6 @@
+#updateModal {
+    display: none;
+    position: absolute;
+    height: 500px;
+    width: 800px;
+}

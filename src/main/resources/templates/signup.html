@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link href="/css/signup.css" rel="stylesheet">
+</head>
+<body>
+<div id="signUp">
+    <input type="text" name="userName" id="userName" placeholder="Username" />
+    <input type="text" name="userId" id="userId" placeholder="ID" />
+    <input type="password" name="password" id="password" placeholder="Password" />
+
+    <input type="submit" name="signup_submit" value="Sign me up" th:onclick="|javascript:signup()|" />
+</div>
+<div id="login">
+    <input type="text" name="userId" id="userLoginId" placeholder="ID" />
+    <input type="password" name="password" id="userLoginPassword" placeholder="Password" />
+
+    <input type="submit" name="login_submit" value="Login" />
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="/js/signup.js"></script>
+</body>
+</html>
