@@ -23,13 +23,13 @@ public class UserController {
 
     @GetMapping("/list")
     public String list(Model model, @PageableDefault Pageable pageable) {
-        Page<UserFindAllDto> page = userService.userFindAllResponse(pageable);
-        model.addAttribute("page", page);
-        int start = Math.max(1, page.getNumber() - 2);
-        int end = Math.min(start + 4, page.getTotalPages());
+        Page<UserFindAllDto> pages = userService.userFindAllResponse(pageable);
+        model.addAttribute("pages", pages);
+        int start = Math.max(1, pages.getNumber() - 2);
+        int last = Math.min(start + 6, pages.getTotalPages());
 
         model.addAttribute("start", start);
-        model.addAttribute("end", end);
+        model.addAttribute("last", last);
 
         return "list";
     }

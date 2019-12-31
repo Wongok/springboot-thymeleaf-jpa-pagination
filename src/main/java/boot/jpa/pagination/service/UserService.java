@@ -36,7 +36,7 @@ public class UserService {
     @ReadOnlyProperty
     public Page<UserFindAllDto> userFindAllResponse(Pageable pageable) {
         int page = pageable.getPageNumber() == 0 ? 0 : pageable.getPageNumber() - 1;
-        pageable = PageRequest.of(page, 3);
+        pageable = PageRequest.of(page, 5);
         return userRepository.UserFindAllResponse(pageable);
     }
 
