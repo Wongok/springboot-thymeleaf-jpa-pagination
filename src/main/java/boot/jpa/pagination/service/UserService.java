@@ -8,11 +8,12 @@ import boot.jpa.pagination.dto.UserSignUpDto;
 import boot.jpa.pagination.dto.UserUpdateRequestDto;
 import lombok.AllArgsConstructor;
 import org.springframework.data.annotation.ReadOnlyProperty;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -33,10 +34,10 @@ public class UserService {
 
     @Transactional
     @ReadOnlyProperty
-    public List<UserFindAllDto> userFindAllResponse() {
-        return userRepository.findAll().stream()
-                .map(UserFindAllDto::new)
-                .collect(Collectors.toList());
+    public Page<UserFindAllDto> userFindAllResponse(Pageable pageable) {
+        int page = pageable.getPageNumber() == 0 ? 0 : pageable.getPageNumber() - 1;
+        pageable = PageRequest.of(page, 3);
+        return userRepository.UserFindAllResponse(pageable);
     }
 
     @Transactional
