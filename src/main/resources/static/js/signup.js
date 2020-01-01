@@ -12,7 +12,7 @@ function signup() {
         dataType: 'json',
         contentType: 'application/json; charset=utf-8'
     }).done(function (id) {
-        location.href="/list";
+        location.href="/list?page=1";
         findById(id);
     }).fail(function () {
         console.log('fail');

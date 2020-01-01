@@ -16,7 +16,7 @@ list = {
         });
     },
 
-    update : function () {
+    update : function (page) {
         var user = {
             id: $('#updateModal').data('id'),
             userId: $('#updateUserId').val(),
@@ -31,13 +31,13 @@ list = {
             dataType: 'json',
             contentType: 'application/json; charset=utf-8'
         }).done(function () {
-            location.reload();
+            location.href="/list?page=" + page;
         }).fail(function () {
             alert('Please try again');
         });
     },
 
-    deleteById : function (id) {
+    deleteById : function (id, totalElements, size, page) {
         $.ajax({
             url: '/delete',
             type: 'delete',
@@ -45,7 +45,12 @@ list = {
             dataType: 'json',
             contentType: 'application/json; charset=utf-8'
         }).done(function () {
-            location.reload();
+            if(totalElements % size === 1) {
+                location.href="/?page=" + page;
+            }else {
+                page++;
+                location.href="/?page=" + page;
+            }
         }).fail(function () {
             alert('Please try again');
         });
@@ -53,12 +58,12 @@ list = {
 }
 
 
-function update() {
-    list.update();
+function update(page) {
+    list.update(page);
 }
 
-function deleteById(id) {
-    list.deleteById(id);
+function deleteById(id, totalElements, size, page) {
+    list.deleteById(id, totalElements, size, page);
 }
 
 function findById(id) {

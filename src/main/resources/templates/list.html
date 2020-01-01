@@ -24,7 +24,7 @@
                 <td th:text="*{createdDate}"></td>
                 <td th:text="*{modifiedDate}"></td>
                 <td><button th:onclick="|javascript:findById(*{id})|">modify</button></td>
-                <td><button th:onclick="|javascript:deleteById(*{id})|">delete</button></td>
+                <td><button th:onclick="|javascript:deleteById(*{id}, ${pages.totalElements}, ${pages.size}, ${pages.getNumber()})|">delete</button></td>
             </tr>
         </tbody>
     </table>
@@ -70,7 +70,7 @@
             </table>
         </div>
         <div class="modal-footer">
-            <button th:onclick="|javascript:update()|">Update</button>
+            <button th:onclick="|javascript:update(${pages.getNumber() + 1})|">Update</button>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
